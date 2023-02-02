@@ -1,14 +1,12 @@
 import java.nio.file.Paths
 
 buildscript {
-    def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['RNSAC_kotlinVersion']
-
     repositories {
         mavenCentral()
     }
 
     dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin")
     }
 }
 
@@ -96,13 +94,11 @@ repositories {
     mavenCentral()
 }
 
-def kotlin_version = getExtOrDefault('kotlinVersion', project.properties['RNSAC_kotlinVersion'])
-
 dependencies {
     if (isNewArchitectureEnabled()) {
         implementation project(":ReactAndroid")
     } else {
         implementation 'com.facebook.react:react-native:+'
     }
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
 }
